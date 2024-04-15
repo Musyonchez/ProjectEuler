@@ -1,16 +1,25 @@
 #!/usr/bin/env python3
 
-# <p>The sum of the squares of the first ten natural numbers is,</p>
-# $$1^2 + 2^2 + ... + 10^2 = 385.$$
-# <p>The square of the sum of the first ten natural numbers is,</p>
-# $$(1 + 2 + ... + 10)^2 = 55^2 = 3025.$$
-# <p>Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is $3025 - 385 = 2640$.</p>
-# <p>Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.</p>
+# <p>By listing the first six prime numbers: $2, 3, 5, 7, 11$, and $13$, we can see that the $6$th prime is $13$.</p>
+# <p>What is the $10\,001$st prime number?</p>
+# .</p>
 
-def sum_of_squares(n):
-    return sum(i**2 for i in range(1, n + 1))
+def is_prime(n):
+    if n == 2:
+        return True
+    if n < 2 or n % 2 == 0:
+        return False
+    return all(n % i != 0 for i in range(3, int(n**0.5) + 1, 2))
 
-def square_of_sum(n):
-    return sum(range(1, n + 1))**2
+def nth_prime(n):
+    count = 1
+    i = 1
+    while count < n:
+        i += 2
+        if is_prime(i):
+            count += 1
+    print(i)
 
-print(square_of_sum(100) - sum_of_squares(100))
+nth_prime(10001)
+
+# 104743
