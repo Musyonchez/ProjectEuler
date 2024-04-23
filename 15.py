@@ -7,7 +7,6 @@
 
 
 def lattice_paths(n):
-    
     paths = 1
     for i in range(n):
         paths *= 2 * n - i
