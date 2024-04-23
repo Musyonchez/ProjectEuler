@@ -6,7 +6,6 @@
 # <p>How many such routes are there through a $20 \times 20$ grid?</p>
 
 
-
 def lattice_paths(n):
     paths = 1
     for i in range(n):
@@ -14,13 +13,7 @@ def lattice_paths(n):
         paths //= i + 1
     return paths
 
+
 print(lattice_paths(20))
 
 # 137846528820
-
-
-    
-
-        
-
-    

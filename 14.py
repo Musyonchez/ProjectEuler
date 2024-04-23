@@ -22,7 +22,6 @@ def collatz(n):
 max_chain = 0
 
 for i in range(1, 1000000):
-
     chain = collatz(i)
 
     if chain > max_chain:

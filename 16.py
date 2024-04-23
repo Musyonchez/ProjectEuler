@@ -14,4 +14,4 @@ def power(n):
 
 print(power(1000))
 
-#1366
+# 1366

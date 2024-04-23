@@ -4,12 +4,14 @@
 # <p>What is the $10\,001$st prime number?</p>
 # .</p>
 
+
 def is_prime(n):
     if n == 2:
         return True
     if n < 2 or n % 2 == 0:
         return False
     return all(n % i != 0 for i in range(3, int(n**0.5) + 1, 2))
+
 
 def nth_prime(n):
     count = 1
@@ -19,6 +21,7 @@ def nth_prime(n):
         if is_prime(i):
             count += 1
     print(i)
+
 
 nth_prime(10001)
 
