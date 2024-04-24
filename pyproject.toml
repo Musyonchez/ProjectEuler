@@ -1,14 +1,5 @@
-[tool.autopep8]
-max_line_length = 120
-ignore = ["E501", "W6"]
-in-place = true
-recursive = true
-aggressive = 3
-experimental = true
-exclude = ["*.pyi", "build/*", "dist/*"]
-
 [tool.black]
-line-length = 88
+line-length = 79
 include = '\.pyi?$'
 exclude = '''
 /(

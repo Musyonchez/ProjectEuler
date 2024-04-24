@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# <p>In the $20 \times 20$ grid below, four numbers along a diagonal line have been marked in red.</p>
+# <p>In the $20 \times 20$ grid below, four numbers along a
+#  diagonal line have been marked in red.</p>
 # <p class="monospace center">
 # 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08<br>
 # 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00<br>
@@ -22,8 +23,17 @@
 # 20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16<br>
 # 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54<br>
 # 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48<br></p>
-# <p>The product of these numbers is $26 \times 63 \times 78 \times 14 = 1788696$.</p>
-# <p>What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the $20 \times 20$ grid?</p>
+# <p>The product of these numbers is $26 \times 63 \times 78
+#  \times 14 = 1788696$.</p>
+# <p>What is the greatest product of four adjacent numbers
+#  in the same direction (up, down, left, right, or diagonally)
+#  in the $20 \times 20$ grid?</p>
+
+"""
+This module contains the solution to the eleventh Project Euler problem.
+It calculates the greatest product of four adjacent numbers in the same
+ direction (up, down, left, right, or diagonally) in a 20x20 grid.
+"""
 
 number = [
     [
@@ -281,47 +291,58 @@ number = [
 
 
 def greatest_product(n, count):
+    """
+    Calculate the greatest product of 'count' adjacent numbers in
+      the same direction in a 20x20 grid.
+
+    Parameters:
+    n (list): The 20x20 grid.
+    count (int): The number of adjacent numbers to consider.
+
+    Returns:
+    int: The greatest product of 'count' adjacent numbers.
+    """
     greatest = 0
-    for i in range(len(n)):
-        for j in range(len(n[i])):
+    for i, row in enumerate(n):
+        for j, _ in enumerate(row):
+            # Check for horizontal
+            if j + count <= len(row):
+                product = 1
+                for k in range(count):
+                    product *= int(row[j + k])
+                greatest = max(greatest, product)
+            # Check for vertical
             if i + count <= len(n):
                 product = 1
                 for k in range(count):
                     product *= int(n[i + k][j])
-                if product > greatest:
-                    greatest = product
-            if j + count <= len(n[i]):
-                product = 1
-                for k in range(count):
-                    product *= int(n[i][j + k])
-                if product > greatest:
-                    greatest = product
-            if i + count <= len(n) and j + count <= len(n[i]):
+                greatest = max(greatest, product)
+            # Check for diagonal down-right
+            if i + count <= len(n) and j + count <= len(row):
                 product = 1
                 for k in range(count):
                     product *= int(n[i + k][j + k])
-                if product > greatest:
-                    greatest = product
-            if i - count >= 0 and j + count <= len(n[i]):
+                greatest = max(greatest, product)
+            # Check for diagonal up-right
+            if i - count >= 0 and j + count <= len(row):
                 product = 1
                 for k in range(count):
                     product *= int(n[i - k][j + k])
-                if product > greatest:
-                    greatest = product
-    print(greatest)
+                greatest = max(greatest, product)
+    return greatest
 
 
 # Assuming 'number' is the variable holding the number you want to check and modify
-number_str = str(number)  # Convert the number to a string
+NUMBER_STR = str(number)  # Convert the number to a string
 
 # Check if the number starts with 0
-if number_str.startswith("0"):
+if NUMBER_STR.startswith("0"):
     # Remove the leading 0
-    number = int(
-        number_str[1:]
+    NUMBER = int(
+        NUMBER_STR[1:]
     )  # Convert the string back to an integer, excluding the first character
 
 # Call the greatest_product function with the modified number and a count of 4
-greatest_product(number, 4)
+print(greatest_product(number, 4))
 
 # 70600674

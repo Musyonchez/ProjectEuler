@@ -16,6 +16,10 @@ repos:
       - id: mixed-line-ending # replaces or checks mixed line ending.
       - id: requirements-txt-fixer # sorts entries in requirements.txt.
       - id: trailing-whitespace # trims trailing whitespace.
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v18.1.4
+    hooks:
+      - id: clang-format
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v2.5.1
     hooks:
@@ -27,11 +31,6 @@ repos:
     hooks:
       - id: ruff
       - id: ruff-format
-
-  - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v18.1.4
-    hooks:
-      - id: clang-format
   - repo: https://github.com/PyCQA/pylint
     rev: v3.1.0
     hooks:
